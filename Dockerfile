@@ -22,7 +22,8 @@ RUN git clone -b ${PX4_BRANCH} https://github.com/PX4/Firmware.git ${FIRMWARE_DI
 WORKDIR ${FIRMWARE_DIR}
 
 # Build everything without launching Gazebo
-RUN DONT_RUN=1 make ${PX4_TARGET} ${PX4_SITL}
+RUN DONT_RUN=1 make ${PX4_TARGET}
+RUN make ${PX4_TARGET} sitl_${PX4_SITL}
 
 EXPOSE 14556/udp
 ENTRYPOINT make ${PX4_TARGET} ${PX4_SITL}
